@@ -1,1 +1,1 @@
-# LightSwitchServer
+# LightSwitch
