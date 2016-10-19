@@ -34,7 +34,7 @@ var server = app.listen(8081, function() {
 
 
 
-
+console.log("Server Running on port 8081");
 
 // var setMacA
  // var timeout = setInterval(fuddress = "EC:AD:B8:0A:BB:AD";
