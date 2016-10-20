@@ -4,11 +4,15 @@
   "description": "LightSwitch dashboard.",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "example",
     "heroku"
   ],
-  "author": "Abu"
+  "author": "Abu",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
