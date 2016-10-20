@@ -2,16 +2,14 @@
 
 var mongodb = require('mongodb');
 var port = process.env.PORT || 8080;
-var dbuser = process.env.USER;
-var dbpassword = process.env.PASS;
+
 var express = require('express');
 var app = express();
 app.use(express.static(__dirname + '/public'));
 
-
 var MongoClient = mongodb.MongoClient;
+var url = process.env.MONGOLAB_URI
 
-var url = 'mongodb://'+dbuser+':'+dbpassword+'@ds027415.mlab.com:27415/heroku_tpwqr7r3';
 
 
 app.get('/', function(req, res) {
