@@ -14,7 +14,7 @@
   "author": "Abu",
   "dependencies": {
     "express": "^4.14.0"
-  }
+  },
   "dependencies": {
     "express": "^4.9.8"
   },
