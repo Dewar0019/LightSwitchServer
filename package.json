@@ -13,11 +13,8 @@
   ],
   "author": "Abu",
   "dependencies": {
-    "express": "^4.14.0",
+    "express": "^4.9.8",
     "mongoose": "^4.6.4"
-  },
-  "dependencies": {
-    "express": "^4.9.8"
   },
   "engines": {
     "node": "6.7.0"
