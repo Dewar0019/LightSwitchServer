@@ -1,18 +1,24 @@
 
-
+require('dotenv').config();
 var port = process.env.PORT || 8080;
 var mongoose = require ("mongoose"); 
 var express = require('express');
 var app = express();
+
+
 app.use(express.static(__dirname + '/public'));
+//Set templating engine
+app.set('view engine', 'ejs');
 
 var uristring = process.env.MONGOLAB_URI
 
 
 
 app.get('/', function(req, res) {
-   res.sendFile(__dirname + '/index.html');
+   res.render('pages/layout')
 });
+
+
 app.post('/',function  (req, res) {
    console.log("got a POST request for the homepage");
    res.send('hello POST');
@@ -37,7 +43,4 @@ mongoose.connect(uristring, function (err, res) {
 
 console.log("Server Running on port:" + port);
 
-// var setMacA
- // var timeout = setInterval(fuddress = "EC:AD:B8:0A:BB:AD";
-var setMacAddress = [];
 
