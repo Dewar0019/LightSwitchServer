@@ -16,6 +16,7 @@
     "dotenv": "^2.0.0",
     "ejs": "2.5.2",
     "express": "4.9.8",
+    "googleapis": "~1.1.1",
     "mongoose": "4.6.4"
   },
   "engines": {

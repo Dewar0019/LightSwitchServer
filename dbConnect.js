@@ -31,6 +31,7 @@ module.exports = {
             rooms.forEach(function(room) {
                 allRooms.push(room.displayName);
             })
+            console.log(allRooms);
         });
 
     }
