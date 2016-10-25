@@ -19,7 +19,9 @@
     "googleapis": "~1.1.1",
     "mongoose": "4.6.4",
     "unirest": "^0.5.1",
-    "body-parser": "^1.15.2"
+    "body-parser": "^1.15.2",
+    "passport": "^0.3.2",
+    "express-session": "^1.14.1"
   },
   "engines": {
     "node": "6.7.0"

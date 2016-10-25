@@ -4,6 +4,8 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express();
 var database = require("./dbConnect.js");
+var passport = require("passport");
+var session  = require('express-session');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -23,6 +25,9 @@ app.get('/', function(req, res) {
     })
 });
 
+app.get('/login', function(req, res) {
+	res.render('partials/login');
+});
 
 // app.get('/room/:id', function(req, res) {
 //     database.fetchRoom(req.params.id, function(err, result) {
@@ -47,11 +52,25 @@ app.post('/test', function(req, res) {
 
 })
 
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('pages/layout');
+ });
+
+app.use(session({ secret: 'digitallumens' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 
 var server = app.listen(port, function() {
     var host = server.address().address
     var port = server.address().port
 });
+
+	
+
+
 
 
 console.log("Server Running on port:" + port);

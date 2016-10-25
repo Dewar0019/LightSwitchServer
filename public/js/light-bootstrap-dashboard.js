@@ -8,6 +8,17 @@ var navbar_initialized = false;
 
 $(document).ready(function() {
 
+var authenticate = function() {
+        var username = document.getElementById("login-name").value;
+        var password = document.getElementById("login-pass").value;
+        if(username == "admin" && password == "1234") {
+            document.location.href = "success";
+        } else {
+            alert("Your Username and Password combination was not recognized. Please try again");
+        }
+    }
+
+
 $('.rooms').click(function() {
         var data = {};
         data.number = $(this).attr('room-id')+"";
