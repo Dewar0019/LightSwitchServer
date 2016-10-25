@@ -25,13 +25,33 @@ mongoose.connect(uristring, function(err, res) {
 
 
 module.exports = {
-    grabAllrooms: function() {
+    fetchAllRooms: function(callback) {
         Room.find({}, function(err, rooms) {
-            var allRooms = [];
-            rooms.forEach(function(room) {
-                allRooms.push(room.displayName);
-            })
-            console.log(allRooms);
+            if(err) {
+                console.log("Error:\n" + err);
+            }
+
+            console.log("Retrieved Rooms from Database")
+            // console.log(rooms);
+            // rooms.forEach(function(room) {
+                // allRooms.push(room.displayName);
+            // })
+            callback(null, {data : rooms});
+        });
+    },
+
+    fetchRoom: function(id, callback) {
+        Room.find({'_id': id}, function(err, rooms) {
+            if(err) {
+                console.log("Error:\n" + err);
+            }
+
+            console.log("Retrieved Rooms from Database")
+            // console.log(rooms);
+            // rooms.forEach(function(room) {
+                // allRooms.push(room.displayName);
+            // })
+            callback(null, {data : rooms});
         });
 
     }

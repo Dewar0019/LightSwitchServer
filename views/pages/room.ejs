@@ -1,3 +1,4 @@
+<h1><%= room.displayName %></h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
@@ -10,13 +11,13 @@
                     <p id="demo"></p>
                     <div class="input-group">
                         <span class="input-group-addon"></span>
-                        <input type="text" class="form-control" placeholder="MAC Address">
-                        <button onclick="myFunction()" type="button" class="btn btn-info">Add</button>
+                        <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
+                        <button id="addDevice" type="button" class="btn btn-info">Add</button>
                         <button type="button" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
-            <% include ./calendar %>
+            <% include ../partials/calendar %>
         </div>
     </div>
 </div>

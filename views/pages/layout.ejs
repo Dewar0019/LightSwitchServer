@@ -4,22 +4,19 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="sidebar" data-color="azure" data-image="assets/img/back2.jpg">
+            <div class="sidebar" data-color="azure" data-image="/img/back2.jpg">
                 <div class="sidebar-wrapper">
                     <div class="logo">
                         <h1>LightSwitch</h1>
                     </div>
                     <ul class="nav">
+                        <%for(var i =0; i<rooms.length; i++)  { %>
                         <li class="active">
-                            <a href="">
-                                <p>Volen</p>
+                            <a class="rooms" href="#" room-id="<%-rooms[i]._id%>">
+                                <p> <%= rooms[i].displayName %> </p>
                             </a>
                         </li>
-                        <li class="active">
-                            <a href="">
-                                <p>Maker Lab</p>
-                            </a>
-                        </li>
+                        <% };  %>
                     </ul>
                 </div>
             </div>
@@ -27,8 +24,8 @@
                 <nav class="navbar navbar-default navbar-fixed">
                     <% include ../partials/nav%>
                 </nav>
-                <div class="content">
-                    <% include ../partials/room%>
+                <div class="result">
+                        <%- include('room', {room: rooms[0]}) %>
                 </div>
                 
             </div>
