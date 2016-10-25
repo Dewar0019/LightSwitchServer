@@ -41,7 +41,8 @@ $('.rooms').click(function() {
 
 $('#addDevice').click(function() {
         var data = {};
-        var $('#macInfo').val();
+        var info = $('#macInfo').val();
+        console.log(info);
         data.macAddress = $('#macInfo').val();
 
         console.log(data);
