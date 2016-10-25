@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <% include ../partials/head %>
+        <link href="assets/css/login.css" rel="stylesheet"/>
+  </head>
+  <body >
+    <div class="wrapper">
+      <div class="content">
+      <form>
+          <fieldset>
+            <legend><h2 class="login-title" >Welcome to Lightswitch!</h2></legend>
+            <div class="login-form">
+              <div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="username" id="login-name">
+                <label class="login-field-icon fui-user" for="login-name"></label>
+              </div>
+              <div class="control-group">
+                <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+                <label class="login-field-icon fui-lock" for="login-pass"></label>
+              </div><br>
+              <input type="submit" class="btn btn-primary" value="Login" button type="button" onclick="authenticate()" >
+              <input type="submit" class="btn btn-primary" value="New User" button type="button" ><br>
+              <!-- <label class="checkbox">
+                <input type="checkbox">
+                <p>Remember me</p>
+              </label> -->
+          </fieldset>
+        </form>  
+      </div>
+    </div>
+  </body> 
+</html>
