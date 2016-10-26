@@ -61,7 +61,12 @@ app.post('/addDevice', function(req, res) {
 
 
 app.post('/getStatus', function(req, res) {
-   console.log(req.body);
+	console.log(req.body);
+	database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
+       res.send(result.data);
+    })
+   
+   
 })
 
 

@@ -70,5 +70,21 @@ module.exports = {
                 data: data
             });
         });
-    }
+    },
+
+    fetchRoomByPiName: function(piName, callback) {
+        Room.find({
+            'piName': piName
+        }, function(err, rooms) {
+            if (err) {
+                console.log("Error:\n" + err);
+            }
+
+            console.log("Retrieved pi node: " + piName);
+
+            callback(null, {
+                data: rooms
+            });
+        });
+    },
 }
