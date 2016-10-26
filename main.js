@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 var app = express();
 var database = require("./dbConnect.js");
 var passport = require("passport");
-var session  = require('express-session');
+var session = require('express-session');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -26,39 +26,56 @@ app.get('/', function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-	res.render('partials/login');
+    res.render('partials/login');
 });
 
-// app.get('/room/:id', function(req, res) {
-//     database.fetchRoom(req.params.id, function(err, result) {
-//         res.render('pages/layout', {
-//             'rooms': result.data
-//         })
-//     })
-// });
-
-
 app.post('/test', function(req, res) {
-	console.log(req.body)
+    console.log(req.body)
     if (req.xhr) {
         database.fetchRoom(req.body.number, function(err, result) {
-        	if(err) {
-        		console.log("fetch room error");
-        	}
+            if (err) {
+                console.log("fetch room error");
+            }
             console.log(result.data);
-            res.render('pages/room', {'room': result.data[0]})
+            res.render('pages/room', {
+                'room': result.data[0]
+            })
         })
     }
 
 })
 
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('pages/layout');
- });
 
-app.use(session({ secret: 'digitallumens' })); // session secret
+app.post('/addDevice', function(req, res) {
+    if (req.xhr) {
+        database.addDevice(req.body.id, req.body.macAddress, function(err, result) {
+            if (err) {
+                console.log("error adding device:" + req.body.macAddress);
+            } else {
+                console.log("resulting data: " + result.data);
+                res.render('pages/room', {'room': result.data})
+            }
+        })
+    }
+})
+
+
+app.post('/getStatus', function(req, res) {
+   console.log(req.body);
+})
+
+
+app.post('/login',
+    passport.authenticate('local', {
+        failureRedirect: '/login'
+    }),
+    function(req, res) {
+        res.redirect('pages/layout');
+    });
+
+app.use(session({
+    secret: 'digitallumens'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -68,7 +85,7 @@ var server = app.listen(port, function() {
     var port = server.address().port
 });
 
-	
+
 
 
 

@@ -8,10 +8,10 @@ var navbar_initialized = false;
 
 $(document).ready(function() {
 
-var authenticate = function() {
+    var authenticate = function() {
         var username = document.getElementById("login-name").value;
         var password = document.getElementById("login-pass").value;
-        if(username == "admin" && password == "1234") {
+        if (username == "admin" && password == "1234") {
             document.location.href = "success";
         } else {
             alert("Your Username and Password combination was not recognized. Please try again");
@@ -19,9 +19,9 @@ var authenticate = function() {
     }
 
 
-$('.rooms').click(function() {
+    $('.rooms').click(function() {
         var data = {};
-        data.number = $(this).attr('room-id')+"";
+        data.number = $(this).attr('room-id') + "";
         $.ajax({
             url: "/test",
             type: "POST",
@@ -39,27 +39,35 @@ $('.rooms').click(function() {
     });
 
 
-$('#addDevice').click(function() {
+    $(document).on('click', '#addDevice', function(event) {
+
         var data = {};
         var info = $('#macInfo').val();
-        console.log(info);
-        data.macAddress = $('#macInfo').val();
 
+        //TODO: Apply mac address regex pattern here later
+        if (info.length == 0) {
+            alert("You must enter a value");
+        } else {
+            data.macAddress = info;
+            data.id = $(this).attr('room-id') + "";
+            $('#macInfo').val("");
+        }
         console.log(data);
-        // $.ajax({
-        //     url: "/test",
-        //     type: "POST",
-        //     data: data,
-        //     contentType: "application/x-www-form-urlencoded",
-        //     success: function(data, textStatus, jqXHR) {
-        //         console.log(data);
-        //         console.log("success");
-        //         $(".result").html(data);
-        //     },
-        //     error: function(jqXHR, textStatus, errorThrown) {
-        //         console.log(errorThrown);
-        //     }
-        // });
+        $.ajax({
+            url: "/addDevice",
+            type: "POST",
+            data: data,
+            contentType: "application/x-www-form-urlencoded",
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                console.log("success");
+                $(".result").html(data);
+                console.log("aeoifm");
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("error");
+            }
+        });
     });
 
 
