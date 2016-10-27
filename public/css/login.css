@@ -10,6 +10,11 @@ html, body {
 .login-form {
 	display: flex;
 	flex-direction: column;
+	text-align: center;
+}
+
+.login-form p{
+	color: #666;
 }
 
 .login-field {
