@@ -1,6 +1,5 @@
 <h1><%= room.displayName %></h1>
 <h1><%= room._id %></h1>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-4">
@@ -10,10 +9,9 @@
                     <p class="category">All Registered Devices</p>
                 </div>
                 <div class="content">
-                    <p id="demo"></p>
                     <ul>
                         <li>hello </li>
-                        <% for(var i = 0; i<room.devices.length; i++) {%> 
+                        <% for(var i = 0; i<room.devices.length; i++) {%>
                         <li><%= room.devices[i]%></li>
                         <%}%>
                     </ul>
@@ -25,7 +23,19 @@
                     </div>
                 </div>
             </div>
-            <% include ../partials/calendar %>
         </div>
+        <!-- This card will be for monitoring activity in room -->
+        <div class="col-md-offset-3 col-md-4">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Room Activity</h4>
+                    <p class="category">Movement in room from last 30 minutes</p>
+                </div>
+                <div class="content">
+                </div>
+            </div>
+        </div>
+        <% include ../partials/calendar %>
+        
     </div>
 </div>

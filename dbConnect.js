@@ -48,7 +48,7 @@ module.exports = {
             console.log("Retrieved Single Room from Database")
 
             callback(null, {
-                data: rooms
+                data: rooms[0]
             });
         });
     },

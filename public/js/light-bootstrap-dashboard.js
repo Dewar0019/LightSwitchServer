@@ -20,10 +20,11 @@ $(document).ready(function() {
 
 
     $('.rooms').click(function() {
+        console.log("navigating to other room");
         var data = {};
         data.number = $(this).attr('room-id') + "";
         $.ajax({
-            url: "/test",
+            url: "/navigate",
             type: "POST",
             data: data,
             contentType: "application/x-www-form-urlencoded",
@@ -39,8 +40,8 @@ $(document).ready(function() {
     });
 
 
+    //For adding a device
     $(document).on('click', '#addDevice', function(event) {
-
         var data = {};
         var info = $('#macInfo').val();
 
@@ -62,10 +63,11 @@ $(document).ready(function() {
                 console.log(data);
                 console.log("success");
                 $(".result").html(data);
-                console.log("aeoifm");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("error");
+                console.log(errorThrown);
+
             }
         });
     });

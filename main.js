@@ -6,6 +6,7 @@ var app = express();
 var database = require("./dbConnect.js");
 var passport = require("passport");
 var session = require('express-session');
+var unirest = require("unirest");
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -29,16 +30,16 @@ app.get('/login', function(req, res) {
     res.render('partials/login');
 });
 
-app.post('/test', function(req, res) {
-    console.log(req.body)
+
+app.post('/navigate', function(req, res) {
     if (req.xhr) {
         database.fetchRoom(req.body.number, function(err, result) {
             if (err) {
                 console.log("fetch room error");
             }
-            console.log(result.data);
+            // console.log(result.data);
             res.render('pages/room', {
-                'room': result.data[0]
+                'room': result.data
             })
         })
     }
@@ -52,7 +53,8 @@ app.post('/addDevice', function(req, res) {
             if (err) {
                 console.log("error adding device:" + req.body.macAddress);
             } else {
-                console.log("resulting data: " + result.data);
+                console.log("Device added");
+                sendDataToServer(result.data);
                 res.render('pages/room', {'room': result.data})
             }
         })
@@ -61,12 +63,10 @@ app.post('/addDevice', function(req, res) {
 
 
 app.post('/getStatus', function(req, res) {
-	console.log(req.body);
 	database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
+        console.log(result.data);
        res.send(result.data);
     })
-   
-   
 })
 
 
@@ -90,6 +90,19 @@ var server = app.listen(port, function() {
     var port = server.address().port
 });
 
+
+sendDataToServer = function(roomInfo) {
+    var room = JSON.parse(JSON.stringify(roomInfo))
+    console.log("http://"+room.piAddress+"/updateMe");
+    console.log("Sending Updated Device List to piNode " + room.piName);
+
+    unirest.post("http://"+room.piAddress+"/updateMe")
+    .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
+    .send({"devices": room.devices}).end(function(res) {
+        console.log(res.body);
+    })
+
+}
 
 
 
