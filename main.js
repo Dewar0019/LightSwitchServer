@@ -55,7 +55,9 @@ app.post('/addDevice', function(req, res) {
             } else {
                 console.log("Device added");
                 sendDataToServer(result.data);
-                res.render('pages/room', {'room': result.data})
+                res.render('pages/room', {
+                    'room': result.data
+                })
             }
         })
     }
@@ -63,9 +65,9 @@ app.post('/addDevice', function(req, res) {
 
 
 app.post('/getStatus', function(req, res) {
-	database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
+    database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
         console.log(result.data);
-       res.send(result.data);
+        res.send(result.data.devices);
     })
 })
 
@@ -93,14 +95,19 @@ var server = app.listen(port, function() {
 
 sendDataToServer = function(roomInfo) {
     var room = JSON.parse(JSON.stringify(roomInfo))
-    console.log("http://"+room.piAddress+"/updateMe");
+    console.log("http://" + room.piAddress + "/updateMe");
     console.log("Sending Updated Device List to piNode " + room.piName);
 
-    unirest.post("http://"+room.piAddress+"/updateMe")
-    .headers({'Accept': 'application/json', 'Content-Type': 'application/json'})
-    .send({"devices": room.devices}).end(function(res) {
-        console.log(res.body);
-    })
+    unirest.post("http://" + room.piAddress + "/updateMe")
+        .headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        })
+        .send({
+            "devices": room.devices
+        }).end(function(res) {
+            console.log(res.body);
+        })
 
 }
 

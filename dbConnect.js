@@ -83,7 +83,7 @@ module.exports = {
             console.log("Retrieved pi node: " + piName);
 
             callback(null, {
-                data: rooms
+                data: rooms[0]
             });
         });
     },
