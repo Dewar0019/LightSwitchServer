@@ -31,7 +31,8 @@ html, body {
 
 .all-icons [class*="pe-"]{
     font-size: 40px;
-}
+} 
+
 .all-icons input{
     border: 0;
 }
@@ -74,4 +75,13 @@ html, body {
 .table-upgrade td:nth-child(2),
 .table-upgrade td:nth-child(3){
     text-align: center;
+}
+
+.login-header-image {
+    width: 100%;
+    height: 100%;
+}
+
+.calendar-container {
+    padding-left: 15px;
 }
