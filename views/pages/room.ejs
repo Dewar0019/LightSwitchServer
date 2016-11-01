@@ -10,20 +10,30 @@
                 <div class="content">
                     <ul>
                         <% for(var i = 0; i<room.devices.length; i++) {%>
-                        <li><%= room.devices[i]%></li>
+                        <li> <%= room.devices[i]%> </li>
                         <%}%>
                     </ul>
-                    <div class="input-group">
-                        <span class="input-group-addon"></span>
+                    <div id="addDeviceInput" class="input-group">
+                        <span class="input-group-addon" style="border: none">Add New Device</span>
                         <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
                         <button id="addDevice" room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
+                        <button type="button" id="cancelAdd" class="btn btn-danger">Cancel</button>
+                    </div>  
+                    <div id="deleteDevice" class="input-group">
+                        <span class="input-group-addon" style="border: none">Remove a Device</span>
+                        <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
+                        <button id="addDevice" room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
+                        <button type="button" id="cancelDelete" class="btn btn-danger">Cancel</button>
+                    </div> 
+                    <div id="container" class="addButtonContainer">
+                        <span id="addButton" class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span id="subtractButton" class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                    </div>      
                 </div>
             </div>
         </div>
         <!-- This card will be for monitoring activity in room -->
-        <div class=" col-md-4">
+        <div class="col-md-4">
             <div class="card">
                 <div class="header">
                     <h4 class="title">Room Activity</h4>

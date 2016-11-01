@@ -85,3 +85,10 @@ html, body {
 .calendar-container {
     padding-left: 15px;
 }
+
+.input-group {
+    display: none;
+}
+
+
+
