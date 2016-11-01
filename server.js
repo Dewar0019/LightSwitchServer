@@ -8,11 +8,9 @@ var passport = require('passport');
 var unirest = require("unirest");
 var flash    = require('connect-flash');
 var database = require("./dbConnect.js");
+var database = require("./quickstart.js");
 
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({
-//     extended: false
-// }));
+
 
 
 
