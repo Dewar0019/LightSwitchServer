@@ -8,7 +8,7 @@ var passport = require('passport');
 var unirest = require("unirest");
 var flash    = require('connect-flash');
 var database = require("./dbConnect.js");
-var database = require("./quickstart.js");
+var database = require("./calendar.js");
 
 
 
