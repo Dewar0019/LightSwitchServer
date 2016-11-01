@@ -61,7 +61,7 @@ $(document).ready(function() {
         }
     })
 
-
+    $("[name='my-checkbox']").bootstrapSwitch();
 
     $('.rooms').click(function() {
         console.log("navigating to other room");
