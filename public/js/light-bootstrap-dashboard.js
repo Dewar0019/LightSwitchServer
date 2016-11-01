@@ -1,5 +1,7 @@
 var searchVisible = 0;
 var transparent = true;
+var addTabOpen = false;
+var deleteTabOpen = false;
 
 var transparentDemo = true;
 var fixedTop = false;
@@ -17,6 +19,31 @@ $(document).ready(function() {
             alert("Your Username and Password combination was not recognized. Please try again");
         }
     }
+
+
+    $("#addButton").click(function() {
+        if(!deleteTabOpen) {
+            $("#addDeviceInput").slideDown();
+        }
+        addTabOpen = true;
+    })
+
+    $("#subtractButton").click(function() {
+        if(!addTabOpen) {
+            $("#deleteDevice").slideDown();
+        }
+        deleteTabOpen = true;
+    })
+
+    $("#cancelAdd").click(function() {
+        $("#addDeviceInput").slideUp();
+        addTabOpen = false;
+    })
+
+    $("#cancelDelete").click(function() {
+        $("#deleteDevice").slideUp();
+        deleteTabOpen = false;
+    })
 
 
     $('.rooms').click(function() {
@@ -38,6 +65,23 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#addroombutton').click(function() {
+      console.log("click");
+      var data ={};
+      $.ajax({
+          url: "/addRoom",
+          type: "POST",
+          data: data,
+          contentType: "application/x-www-form-urlencoded",
+          success: function(data, textStatus, jqXHR) {
+              console.log(data);
+              $(".result").html(data);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+          }
+      });    });
 
 
     //For adding a device
@@ -79,15 +123,15 @@ $(document).ready(function() {
     // check if there is an image set for the sidebar's background
     lbd.checkSidebarImage();
 
-    // Init navigation toggle for small screens   
+    // Init navigation toggle for small screens
     if (window_width <= 991) {
         lbd.initRightMenu();
     }
 
-    //  Activate the tooltips   
-    $('[rel="tooltip"]').tooltip();
+    //  Activate the tooltips
+    // $('[rel="tooltip"]').tooltip();
 
-    //      Activate the switches with icons 
+    //      Activate the switches with icons
     if ($('.switch').length != 0) {
         $('.switch')['bootstrapSwitch']();
     }
@@ -104,7 +148,7 @@ $(document).ready(function() {
 
 });
 
-// activate collapse right menu when the windows is resized 
+// activate collapse right menu when the windows is resized
 $(window).resize(function() {
     if ($(window).width() <= 991) {
         lbd.initRightMenu();
