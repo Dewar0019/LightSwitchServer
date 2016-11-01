@@ -12,3 +12,6 @@ var authClient = new googleapis.auth.JWT(
         null,
         ["https://www.googleapis.com/auth/calendar"]
     );
+
+http://stackoverflow.com/questions/24918629/inserting-an-event-with-the-nodejs-google-calendar-api-returns-400-missing-end
+http://stackoverflow.com/questions/21607896/how-can-i-download-my-google-api-key-as-pem-file
