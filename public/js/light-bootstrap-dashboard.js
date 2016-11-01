@@ -2,7 +2,8 @@ var searchVisible = 0;
 var transparent = true;
 var addTabOpen = false;
 var deleteTabOpen = false;
-
+var deviceOpen = false;
+var currentDevice = null;
 var transparentDemo = true;
 var fixedTop = false;
 
@@ -44,6 +45,22 @@ $(document).ready(function() {
         $("#deleteDevice").slideUp();
         deleteTabOpen = false;
     })
+
+    $('.device').click(function() {
+        if(this.id != "slider") {
+            if(deviceOpen && currentDevice == this.id) {
+                $('#' + this.id + 'detail').slideUp();
+                deviceOpen = false;
+                currentDevice = null;
+            } else if(deviceOpen && currentDevice != this.id  || !deviceOpen && currentDevice == null) {
+                $('#' + currentDevice + 'detail').slideUp();
+                deviceOpen = true;
+                currentDevice = this.id;
+                $('#' + this.id + 'detail').slideDown();
+            }
+        }
+    })
+
 
 
     $('.rooms').click(function() {
