@@ -34,6 +34,13 @@ module.exports = function(app, passport) {
     })
 
 
+    app.post('/addRoom', function(req, res) {
+        if (req.xhr) {
+          res.render('partials/addroom')
+        }
+    })
+
+
     app.post('/addDevice', function(req, res) {
         if (req.xhr) {
             database.addDevice(req.body.id, req.body.macAddress, function(err, result) {
