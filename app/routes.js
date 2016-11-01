@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
         console.log("Sending Updated Device List to piNode " + room.piName);
     }
 
-    app.get('/home', function(req, res) {
+    app.get('/home', isLoggedIn, function(req, res) {
         database.fetchAllRooms(function(err, result) {
             res.render('pages/layout', {
                 'rooms': result.data
