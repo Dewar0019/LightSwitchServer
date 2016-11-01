@@ -66,6 +66,23 @@ $(document).ready(function() {
         });
     });
 
+    $('#addroombutton').click(function() {
+      console.log("click");
+      var data ={};
+      $.ajax({
+          url: "/addRoom",
+          type: "POST",
+          data: data,
+          contentType: "application/x-www-form-urlencoded",
+          success: function(data, textStatus, jqXHR) {
+              console.log(data);
+              $(".result").html(data);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              console.log(errorThrown);
+          }
+      });    });
+
 
     //For adding a device
     $(document).on('click', '#addDevice', function(event) {
@@ -106,15 +123,15 @@ $(document).ready(function() {
     // check if there is an image set for the sidebar's background
     lbd.checkSidebarImage();
 
-    // Init navigation toggle for small screens   
+    // Init navigation toggle for small screens
     if (window_width <= 991) {
         lbd.initRightMenu();
     }
 
-    //  Activate the tooltips   
+    //  Activate the tooltips
     // $('[rel="tooltip"]').tooltip();
 
-    //      Activate the switches with icons 
+    //      Activate the switches with icons
     if ($('.switch').length != 0) {
         $('.switch')['bootstrapSwitch']();
     }
@@ -131,7 +148,7 @@ $(document).ready(function() {
 
 });
 
-// activate collapse right menu when the windows is resized 
+// activate collapse right menu when the windows is resized
 $(window).resize(function() {
     if ($(window).width() <= 991) {
         lbd.initRightMenu();
