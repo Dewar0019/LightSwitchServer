@@ -34,17 +34,21 @@ module.exports = function(app, passport) {
     })
 
 
+//Adds a room to the database
     app.post('/addRoomDatabase', function(req, res) {
         console.log("adding room to database");
-        console.log(req.body);
         if (req.xhr) {
-          database.addRoom(req.body, function(err, result) {
-            res.render('pages/layout', {'rooms': result.data})
+          database.addRoom(req.body);
+           database.fetchAllRooms(function(err, result) {
+            res.render('pages/layout', {
+                'rooms': result.data
+            })
         })
         }
     })
 
 
+//Renders the addRoom form
     app.post('/addRoom', function(req, res) {
         if (req.xhr) {
           res.render('partials/addroom')
@@ -52,6 +56,7 @@ module.exports = function(app, passport) {
     })
 
 
+//Adds device to piNode
     app.post('/addDevice', function(req, res) {
         if (req.xhr) {
             database.addDevice(req.body.id, req.body.macAddress, function(err, result) {
@@ -69,6 +74,7 @@ module.exports = function(app, passport) {
     })
 
 
+//Endpoint for pi to query to get running list of added devices
     app.post('/getStatus', function(req, res) {
 
             database.fetchRoomByPiName(req.body.deviceName, function(err, result) {

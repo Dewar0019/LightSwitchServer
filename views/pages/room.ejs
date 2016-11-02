@@ -9,27 +9,33 @@
                 </div>
                 <div class="content">
                     <ul>
-                        <% for(var i = 0; i<room.devices.length; i++) {%>
-                        <div class="device" id="<%= room.devices[i]%>">
+
+                        <%
+                        if(room.devices != undefined) { 
+                        for(var i = 0; i<room.devices.length; i++) {%>
+                        <li> <%= room.devices[i]%> </li>
+
+                      <!--   <div class="device" id="<%= room.devices[i]%>">
                             <li style="list-style: none"> <%= room.devices[i]%> </li>
 
                         </div>
                         <div id="<%= room.devices[i]%>detail" class="deviceDetail">
                                 <h1><%= room.devices[i]%></h1>
                                 <input id="slider" type="range" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after" data-slider-tooltip="hide">
-                        </div>
-                        <%}%>
+                        </div> -->
+                        <%}
+                    }%>
                     </ul>
                     <div id="addDeviceInput" class="input-group">
                         <span class="input-group-addon" style="border: none">Add New Device</span>
                         <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
-                        <button id="addDevice" room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
+                        <button id="addDevice" current-room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
                         <button type="button" id="cancelAdd" class="btn btn-danger">Cancel</button>
                     </div>  
                     <div id="deleteDevice" class="input-group">
                         <span class="input-group-addon" style="border: none">Remove a Device</span>
-                        <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
-                        <button id="addDevice" room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
+                        <input  id="remove" type="text" class="form-control" placeholder="MAC Address">
+                        <button id="deleteDevice" type="button" class="btn btn-info">Add</button>
                         <button type="button" id="cancelDelete" class="btn btn-danger">Cancel</button>
                     </div> 
                     <div id="container" class="addButtonContainer">
