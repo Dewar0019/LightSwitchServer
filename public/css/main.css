@@ -86,9 +86,14 @@ html, body {
     padding-left: 15px;
 }
 
-.input-group {
+.input-group, .deviceDetail {
     display: none;
 }
+
+.switchContainer {
+    max-height: 25px;
+}
+
 
 
 

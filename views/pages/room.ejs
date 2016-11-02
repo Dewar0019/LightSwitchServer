@@ -10,7 +10,14 @@
                 <div class="content">
                     <ul>
                         <% for(var i = 0; i<room.devices.length; i++) {%>
-                        <li> <%= room.devices[i]%> </li>
+                        <div class="device" id="<%= room.devices[i]%>">
+                            <li style="list-style: none"> <%= room.devices[i]%> </li>
+
+                        </div>
+                        <div id="<%= room.devices[i]%>detail" class="deviceDetail">
+                                <h1><%= room.devices[i]%></h1>
+                                <input id="slider" type="range" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after" data-slider-tooltip="hide">
+                        </div>
                         <%}%>
                     </ul>
                     <div id="addDeviceInput" class="input-group">
