@@ -7,6 +7,8 @@ var roomSchema = new Schema({
     displayName: String,
     roomLocation: String,
     building: String,
+    piName: String,
+    piAddress: String,
     devices: [String]
         // lights: [{}]
 })
@@ -72,6 +74,18 @@ module.exports = {
         });
     },
 
+    addRoom: function(data, callback) {
+        Room.insertMany([data], function(err, res) {
+            if (err) {
+                console.log("Error:\n" + err);
+            }
+
+            callback(null, {
+                data: data
+            });
+        })
+    },
+
     fetchRoomByPiName: function(piName, callback) {
         Room.find({
             'piName': piName
@@ -79,12 +93,11 @@ module.exports = {
             if (err) {
                 console.log("Error:\n" + err);
             }
-
+            if(rooms.length == 0 ) {
+                return;
+            }
             console.log("Retrieved pi node: " + piName);
-
-            callback(null, {
-                data: rooms[0]
-            });
+                callback(null, {data: rooms[0]});
         });
     },
 }

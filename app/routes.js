@@ -34,6 +34,17 @@ module.exports = function(app, passport) {
     })
 
 
+    app.post('/addRoomDatabase', function(req, res) {
+        console.log("adding room to database");
+        console.log(req.body);
+        if (req.xhr) {
+          database.addRoom(req.body, function(err, result) {
+            res.render('pages/layout', {'rooms': result.data})
+        })
+        }
+    })
+
+
     app.post('/addRoom', function(req, res) {
         if (req.xhr) {
           res.render('partials/addroom')
@@ -59,8 +70,13 @@ module.exports = function(app, passport) {
 
 
     app.post('/getStatus', function(req, res) {
+
             database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
+                if(err) {
+                    console.log("error getting status");
+                }
                 console.log(result.data);
+                console.log(result.devices);
                 res.send(result.data.devices);
             })
         })
