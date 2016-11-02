@@ -9,7 +9,7 @@ module.exports = function(app, passport) {
         console.log("Sending Updated Device List to piNode " + room.piName);
     }
 
-    app.get('/home', isLoggedIn, function(req, res) {
+    app.get('/home', function(req, res) {
         database.fetchAllRooms(function(err, result) {
             res.render('pages/layout', {
                 'rooms': result.data
@@ -31,6 +31,17 @@ module.exports = function(app, passport) {
             })
         }
 
+    })
+
+
+    app.post('/addRoomDatabase', function(req, res) {
+        console.log("adding room to database");
+        console.log(req.body);
+        if (req.xhr) {
+          database.addRoom(req.body, function(err, result) {
+            res.render('pages/layout', {'rooms': result.data})
+        })
+        }
     })
 
 
@@ -59,8 +70,13 @@ module.exports = function(app, passport) {
 
 
     app.post('/getStatus', function(req, res) {
+
             database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
+                if(err) {
+                    console.log("error getting status");
+                }
                 console.log(result.data);
+                console.log(result.devices);
                 res.send(result.data.devices);
             })
         })

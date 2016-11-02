@@ -29,7 +29,7 @@ $(document).ready(function() {
     })
 
     $("#subtractButton").click(function() {
-        if(!addTabOpen) {
+        if (!addTabOpen) {
             $("#deleteDevice").slideDown();
         }
         deleteTabOpen = true;
@@ -49,6 +49,7 @@ $(document).ready(function() {
     $('.rooms').click(function() {
         console.log("navigating to other room");
         var data = {};
+
         data.number = $(this).attr('room-id') + "";
         $.ajax({
             url: "/navigate",
@@ -67,21 +68,54 @@ $(document).ready(function() {
     });
 
     $('#addroombutton').click(function() {
-      console.log("click");
-      var data ={};
-      $.ajax({
-          url: "/addRoom",
-          type: "POST",
-          data: data,
-          contentType: "application/x-www-form-urlencoded",
-          success: function(data, textStatus, jqXHR) {
-              console.log(data);
-              $(".result").html(data);
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-              console.log(errorThrown);
-          }
-      });    });
+        console.log("click");
+        var data = {};
+        $.ajax({
+            url: "/addRoom",
+            type: "POST",
+            data: data,
+            contentType: "application/x-www-form-urlencoded",
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                $(".result").html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+    });
+
+
+
+
+
+     $(document).on('click', '#submitToDatabase', function(event) {
+           event.preventDefault();
+        console.log("click");
+        var data = {};
+        data.displayName = $("#roomname").val();
+        data.building = $("#buildingname").val();
+        data.roomLocation = $("#roomnumber").val();
+        data.piName = $("#piname").val();
+        data.piAddress = $("#piadd").val();
+        data.devices = [];
+        console.log(data);
+        $.ajax({
+            url: "/addRoomDatabase",
+            type: "POST",
+            data: data,
+            contentType: "application/x-www-form-urlencoded",
+            success: function(data, textStatus, jqXHR) {
+                console.log(data);
+                // $(".result").html(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });    
+    });
+
+
 
 
     //For adding a device
