@@ -74,15 +74,15 @@ module.exports = {
         });
     },
 
-    addRoom: function(data, callback) {
+    addRoom: function(data) {
         Room.insertMany([data], function(err, res) {
             if (err) {
                 console.log("Error:\n" + err);
             }
 
-            callback(null, {
-                data: data
-            });
+            // callback(null, {
+            //     data: data
+            // });
         })
     },
 

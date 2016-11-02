@@ -2,8 +2,7 @@ var searchVisible = 0;
 var transparent = true;
 var addTabOpen = false;
 var deleteTabOpen = false;
-var deviceOpen = false;
-var currentDevice = null;
+
 var transparentDemo = true;
 var fixedTop = false;
 
@@ -22,46 +21,30 @@ $(document).ready(function() {
     }
 
 
-    $("#addButton").click(function() {
-        if(!deleteTabOpen) {
-            $("#addDeviceInput").slideDown();
-        }
-        addTabOpen = true;
-    })
+    // $("#addButton").click(function() {
+    //     if (!deleteTabOpen) {
+    //         $("#addDeviceInput").slideDown();
+    //     }
+    //     addTabOpen = true;
+    // })
 
-    $("#subtractButton").click(function() {
-        if (!addTabOpen) {
-            $("#deleteDevice").slideDown();
-        }
-        deleteTabOpen = true;
-    })
+    // $("#subtractButton").click(function() {
+    //     if (!addTabOpen) {
+    //         $("#deleteDevice").slideDown();
+    //     }
+    //     deleteTabOpen = true;
+    // })
 
-    $("#cancelAdd").click(function() {
-        $("#addDeviceInput").slideUp();
-        addTabOpen = false;
-    })
+    // $("#cancelAdd").click(function() {
+    //     $("#addDeviceInput").slideUp();
+    //     addTabOpen = false;
+    // })
 
-    $("#cancelDelete").click(function() {
-        $("#deleteDevice").slideUp();
-        deleteTabOpen = false;
-    })
+    // $("#cancelDelete").click(function() {
+    //     $("#deleteDevice").slideUp();
+    //     deleteTabOpen = false;
+    // })
 
-    $('.device').click(function() {
-        if(this.id != "slider") {
-            if(deviceOpen && currentDevice == this.id) {
-                $('#' + this.id + 'detail').slideUp();
-                deviceOpen = false;
-                currentDevice = null;
-            } else if(deviceOpen && currentDevice != this.id  || !deviceOpen && currentDevice == null) {
-                $('#' + currentDevice + 'detail').slideUp();
-                deviceOpen = true;
-                currentDevice = this.id;
-                $('#' + this.id + 'detail').slideDown();
-            }
-        }
-    })
-
-    $("[name='my-checkbox']").bootstrapSwitch();
 
     $('.rooms').click(function() {
         console.log("navigating to other room");
@@ -74,7 +57,6 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 console.log("success");
                 $(".result").html(data);
             },
@@ -93,7 +75,6 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 $(".result").html(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -106,8 +87,7 @@ $(document).ready(function() {
 
 
 
-     $(document).on('click', '#submitToDatabase', function(event) {
-           event.preventDefault();
+    $(document).on('click', '#submitToDatabase', function(event) {
         console.log("click");
         var data = {};
         data.displayName = $("#roomname").val();
@@ -123,13 +103,12 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
-                // $(".result").html(data);
+                
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
             }
-        });    
+        });
     });
 
 
@@ -137,15 +116,15 @@ $(document).ready(function() {
 
     //For adding a device
     $(document).on('click', '#addDevice', function(event) {
+        event.preventDefault();
         var data = {};
         var info = $('#macInfo').val();
-
         //TODO: Apply mac address regex pattern here later
         if (info.length == 0) {
             alert("You must enter a value");
         } else {
             data.macAddress = info;
-            data.id = $(this).attr('room-id') + "";
+            data.id = $(this).attr('current-room-id') + "";
             $('#macInfo').val("");
         }
         console.log(data);
@@ -155,7 +134,6 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                console.log(data);
                 console.log("success");
                 $(".result").html(data);
             },

@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body>
+    <body id="entirePage">
         <div class="wrapper">
             <div class="sidebar" data-color="azure" data-image="/img/back2.jpg">
                 <div class="sidebar-wrapper">
@@ -37,7 +37,7 @@
                     <% include ../partials/nav%>
                 </nav>
                 <div class="result">
-                    <%- include('room', {room: rooms[0]}) %>
+                    <%- include('room', {room: rooms[1]}) %>
                 </div>
 
             </div>
