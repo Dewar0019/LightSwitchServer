@@ -26,24 +26,31 @@
                         <% }
                         };  %>
                     </ul>
-                  <div style="position: absolute; bottom: 10; left: 10;">
-                    <!--<a href="../partials/addroom.ejs" class="btn btn-warning" role="button" id=addroombutton> + </a> -->
+                    <div style="position: absolute; bottom: 10; left: 10;">
+                        <!--<a href="../partials/addroom.ejs" class="btn btn-warning" role="button" id=addroombutton> + </a> -->
                     <button type="button" class="btn btn-warning" role="button" id="addroombutton"> + </a>
-                  </div>
                 </div>
-            </div>
-            <div class="main-panel">
-                <nav class="navbar navbar-default navbar-fixed">
-                    <% include ../partials/nav%>
-                </nav>
-                <div class="result">
-                    <%- include('room', {room: rooms[1]}) %>
-                </div>
-
             </div>
         </div>
-    </body>
-    <footer>
-        <% include ../partials/footer %>
-    </footer>
+        <div class="main-panel">
+            <nav class="navbar navbar-default navbar-fixed">
+                <% include ../partials/nav%>
+            </nav>
+            <div class="result">
+                <%
+                var notNull=0;
+                for(var i =0; i<rooms.length; i++)  {
+                    if(rooms[i]._id !== null) {
+                        notNull = i
+                    }
+                }
+                %>
+                <%- include('room', {room: rooms[notNull]}) %>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <% include ../partials/footer %>
+</footer>
 </html>
