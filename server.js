@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 var express  = require('express');
 var app      = express();
 var port     = process.env.PORT || 8080;
@@ -8,11 +8,6 @@ var passport = require('passport');
 var unirest = require("unirest");
 var flash    = require('connect-flash');
 var database = require("./dbConnect.js");
-var database = require("./calendar.js");
-
-
-
-
 
 
 app.use(express.static(__dirname + '/public'));

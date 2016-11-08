@@ -1,4 +1,5 @@
 // app/routes.js
+var googleCalendar = require("../calendar.js")
 var database = require("../dbConnect.js");
 
 module.exports = function(app, passport) {
@@ -38,7 +39,11 @@ module.exports = function(app, passport) {
     app.post('/addRoomDatabase', function(req, res) {
         console.log("adding room to database");
         if (req.xhr) {
-          database.addRoom(req.body);
+            //Create Google Calendar First
+            googleCalendar.createCalendar(req.body.piName, function(err, response){
+                req.body.calendarId = response.data.id;
+                database.addRoom(req.body);      
+            })
            database.fetchAllRooms(function(err, result) {
             res.render('pages/layout', {
                 'rooms': result.data

@@ -9,7 +9,8 @@ var roomSchema = new Schema({
     building: String,
     piName: String,
     piAddress: String,
-    devices: [String]
+    devices: [String],
+    calendarId: String
         // lights: [{}]
 })
 

@@ -41,11 +41,14 @@
                 var notNull=0;
                 for(var i =0; i<rooms.length; i++)  {
                     if(rooms[i]._id !== null) {
-                        notNull = i
+                    notNull = i
                     }
                 }
-                %>
+                if(rooms.length > 0) { %>
                 <%- include('room', {room: rooms[notNull]}) %>
+                <%} else { %>
+                    <h1> No Rooms Found </h1>
+                <%}%>
             </div>
         </div>
     </div>
