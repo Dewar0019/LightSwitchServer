@@ -87,12 +87,20 @@ module.exports = {
         })
     },
 
-    deleteRoom:function(data, callback) {
-        Room.remove({_id: data}, function(err, res) {
-            if(err) {
+    deleteRoom: function(data, callback) {
+        Room.findOne({
+            _id: data
+        }, function(err, res) {
+            if (err) {
                 console.log(err);
             }
-            callback(null, {success: 1});
+            Room.remove({
+            _id: data
+        }, function(err){});
+            console.log(res);
+            callback(null, {
+                data: res.calendarId
+            });
         });
     },
 
@@ -103,11 +111,13 @@ module.exports = {
             if (err) {
                 console.log("Error:\n" + err);
             }
-            if(rooms.length == 0 ) {
+            if (rooms.length == 0) {
                 return;
             }
             console.log("Retrieved pi node: " + piName);
-                callback(null, {data: rooms[0]});
+            callback(null, {
+                data: rooms[0]
+            });
         });
     },
 }

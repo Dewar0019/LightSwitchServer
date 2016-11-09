@@ -105,7 +105,8 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                window.location.reload();
+                console.log("Added new room to database");
+                console.log(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -125,7 +126,7 @@ $(document).ready(function() {
                 contentType: "application/x-www-form-urlencoded",
                 success: function(data, textStatus, jqXHR) {
                     console.log("Room succesfully removed");
-                    location.reload();
+                    window.location.reload();
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.log(errorThrown);

@@ -42,11 +42,12 @@ module.exports = function(app, passport) {
             //Create Google Calendar First
             googleCalendar.createCalendar(req.body.piName, function(err, response) {
                 req.body.calendarId = response.data.id;
+
                 database.addRoom(req.body, function(err, res) {
+
                     database.fetchAllRooms(function(err, result) {
-                        res1.render('pages/layout', {
-                            'rooms': result.data
-                        })
+                        console.log(result.data);
+                        res1.render('pages/layout', {'rooms': result.data})
                     })
                 });
 
@@ -63,11 +64,17 @@ module.exports = function(app, passport) {
         }
     })
 
-    app.post('/deleteRoom', function(req, res) {
+    app.post('/deleteRoom', function(req, res1) {
         if (req.xhr) {
-            database.deleteRoom(req.body.roomId);
+            database.deleteRoom(req.body.roomId, function(err, res) {
+                googleCalendar.deleteCalendar(res.data);
+                database.fetchAllRooms(function(err, result) {
+                    res1.render('pages/layout', {
+                        'rooms': result.data
+                    });
+                });
+            });
         }
-
     })
 
 

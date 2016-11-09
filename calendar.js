@@ -13,28 +13,31 @@ var authClient = new googleapis.auth.JWT(
 
 
 // authClient.authorize(function(err, tokens) {
-//             if (err) {
-//                 console.log("createCalendar Error");
-//                 console.log(err);
-//             } else {
+//     if (err) {
+//         console.log("createCalendar Error");
+//         console.log(err);
+//     } else {
 
-//                 googleCal.calendarList.list({
-//                         auth: authClient,
-                        
-//                     },
-//                     function(err, res) {
-//                         if (err) {
-//                             console.log("createCalendar response errror");
-//                             console.log(err);
-//                         } else {
-//                             console.log("successfully created calendar");
-                            
-//                            console.log(res);
-//                         }
-//                     }
-//                 );
+//         googleCal.calendarList.list({
+//                 auth: authClient,
+
+//             },
+//             function(err, res) {
+//                 if (err) {
+//                     console.log("createCalendar response errror");
+//                     console.log(err);
+//                 } else {
+//                     console.log("successfully listed all calendars");
+//                     res.items.forEach(function(object) {
+//                         deleteItems(object.id)
+//                     })
+//                 }
 //             }
-//         });
+//         );
+//     }
+// });
+
+
 
 
 
@@ -69,4 +72,28 @@ module.exports = {
             }
         });
     },
+
+    deleteCalendar: function(calendarId) {
+        authClient.authorize(function(err, tokens) {
+            if (err) {
+                console.log("delete Error");
+                console.log(err);
+            } else {
+                googleCal.calendars.delete({
+                        auth: authClient,
+                        calendarId: calendarId
+                    },
+                    function(err, res) {
+                        if (err) {
+                            console.log("delete response errror");
+                            console.log(err);
+                        } else {
+                            console.log("successfully deleted calendar");
+
+                        }
+                    }
+                );
+            }
+        });
+    }
 }
