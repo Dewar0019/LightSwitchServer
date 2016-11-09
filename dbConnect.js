@@ -75,16 +75,25 @@ module.exports = {
         });
     },
 
-    addRoom: function(data) {
+    addRoom: function(data, callback) {
         Room.insertMany([data], function(err, res) {
             if (err) {
                 console.log("Error:\n" + err);
             }
 
-            // callback(null, {
-            //     data: data
-            // });
+            callback(null, {
+                data: data
+            });
         })
+    },
+
+    deleteRoom:function(data, callback) {
+        Room.remove({_id: data}, function(err, res) {
+            if(err) {
+                console.log(err);
+            }
+            callback(null, {success: 1});
+        });
     },
 
     fetchRoomByPiName: function(piName, callback) {

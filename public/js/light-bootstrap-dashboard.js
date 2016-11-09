@@ -8,7 +8,9 @@ var fixedTop = false;
 
 var navbar_initialized = false;
 
+
 $(document).ready(function() {
+    console.log("documentloaded");
 
     var authenticate = function() {
         var username = document.getElementById("login-name").value;
@@ -103,7 +105,7 @@ $(document).ready(function() {
             data: data,
             contentType: "application/x-www-form-urlencoded",
             success: function(data, textStatus, jqXHR) {
-                
+                window.location.reload();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
@@ -111,6 +113,26 @@ $(document).ready(function() {
         });
     });
 
+
+    $(document).on('click', '#deleteRoom', function(event) {
+        var data = {};
+        data.roomId = $('#addDevice').attr('current-room-id') + "";
+        if (confirm("Are you sure you want to delete this room?")) {
+            $.ajax({
+                url: "/deleteRoom",
+                type: "POST",
+                data: data,
+                contentType: "application/x-www-form-urlencoded",
+                success: function(data, textStatus, jqXHR) {
+                    console.log("Room succesfully removed");
+                    location.reload();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        }
+    });
 
 
 

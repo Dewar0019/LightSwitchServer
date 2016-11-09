@@ -35,33 +35,43 @@ module.exports = function(app, passport) {
     })
 
 
-//Adds a room to the database
-    app.post('/addRoomDatabase', function(req, res) {
+    //Adds a room to the database
+    app.post('/addRoomDatabase', function(req, res1) {
         console.log("adding room to database");
         if (req.xhr) {
             //Create Google Calendar First
-            googleCalendar.createCalendar(req.body.piName, function(err, response){
+            googleCalendar.createCalendar(req.body.piName, function(err, response) {
                 req.body.calendarId = response.data.id;
-                database.addRoom(req.body);      
+                database.addRoom(req.body, function(err, res) {
+                    database.fetchAllRooms(function(err, result) {
+                        res1.render('pages/layout', {
+                            'rooms': result.data
+                        })
+                    })
+                });
+
+
             })
-           database.fetchAllRooms(function(err, result) {
-            res.render('pages/layout', {
-                'rooms': result.data
-            })
-        })
         }
     })
 
 
-//Renders the addRoom form
+    //Renders the addRoom form
     app.post('/addRoom', function(req, res) {
         if (req.xhr) {
-          res.render('partials/addroom')
+            res.render('partials/addroom')
         }
     })
 
+    app.post('/deleteRoom', function(req, res) {
+        if (req.xhr) {
+            database.deleteRoom(req.body.roomId);
+        }
 
-//Adds device to piNode
+    })
+
+
+    //Adds device to piNode
     app.post('/addDevice', function(req, res) {
         if (req.xhr) {
             database.addDevice(req.body.id, req.body.macAddress, function(err, result) {
@@ -79,11 +89,11 @@ module.exports = function(app, passport) {
     })
 
 
-//Endpoint for pi to query to get running list of added devices
+    //Endpoint for pi to query to get running list of added devices
     app.post('/getStatus', function(req, res) {
 
             database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
-                if(err) {
+                if (err) {
                     console.log("error getting status");
                 }
                 console.log(result.data);
