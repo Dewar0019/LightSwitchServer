@@ -91,7 +91,6 @@ module.exports = function(app, passport) {
 
     //Endpoint for pi to query to get running list of added devices
     app.post('/getStatus', function(req, res) {
-
             database.fetchRoomByPiName(req.body.deviceName, function(err, result) {
                 if (err) {
                     console.log("error getting status");
