@@ -107,6 +107,8 @@ $(document).ready(function() {
             success: function(data, textStatus, jqXHR) {
                 console.log("Added new room to database");
                 console.log(data);
+                window.location.reload();
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
