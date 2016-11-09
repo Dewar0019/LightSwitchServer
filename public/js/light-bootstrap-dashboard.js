@@ -12,6 +12,9 @@ var navbar_initialized = false;
 $(document).ready(function() {
     console.log("documentloaded");
 
+
+
+    
     var authenticate = function() {
         var username = document.getElementById("login-name").value;
         var password = document.getElementById("login-pass").value;
@@ -135,6 +138,13 @@ $(document).ready(function() {
                 }
             });
         }
+    });
+
+
+    $("#toggle").click(function() {
+        console.log("toggle");
+        $("#scheduleForm").toggle("slow");
+        $("#datepicker").datepicker();
     });
 
 

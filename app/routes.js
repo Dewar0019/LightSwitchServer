@@ -10,6 +10,7 @@ module.exports = function(app, passport) {
         console.log("Sending Updated Device List to piNode " + room.piName);
     }
 
+    //Home page
     app.get('/home', function(req, res) {
         database.fetchAllRooms(function(err, result) {
             res.render('pages/layout', {
@@ -19,6 +20,7 @@ module.exports = function(app, passport) {
     });
 
 
+    //Navigates to a specify rom
     app.post('/navigate', function(req, res) {
         if (req.xhr) {
             database.fetchRoom(req.body.number, function(err, result) {

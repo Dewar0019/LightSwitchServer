@@ -60,13 +60,9 @@
         <div class="col-md-4">
             <% include ../partials/calendar %>
         </div>
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="registrationEmail" placeholder="Email">
-            </div>
-            <p>Date: <input type="text" id="datepicker"></p>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+        <div class="col-md-offset-4 col-md-4">
+            <button id="toggle"> toggle </button>
+            <%include ../partials/form %>
+        </div>
     </div>
 </div>
