@@ -11,11 +11,20 @@ module.exports = function(app, passport) {
     }
 
     //Home page
-    app.get('/home', function(req, res) {
+    app.get('/home', isLoggedIn, function(req, res) {
         database.fetchAllRooms(function(err, result) {
             res.render('pages/layout', {
-                'rooms': result.data
+                'rooms': result.data,
+                'user': req.user
             })
+        })
+    });
+
+    app.post('/bookRoom', function(req, res) {
+        console.log(req.body);
+        googleCalendar.addEvent(req.body, function(err, result) {
+            console.log("finished adding event");
+            console.log(result.data);
         })
     });
 
@@ -29,7 +38,9 @@ module.exports = function(app, passport) {
                 }
                 // console.log(result.data);
                 res.render('pages/room', {
-                    'room': result.data
+                    'room': result.data,
+                    'user': req.user
+
                 })
             })
         }
@@ -49,7 +60,10 @@ module.exports = function(app, passport) {
 
                     database.fetchAllRooms(function(err, result) {
                         console.log(result.data);
-                        res1.render('pages/layout', {'rooms': result.data})
+                        res1.render('pages/layout', {
+                            'rooms': result.data,
+                            'user': req.user
+                        })
                     })
                 });
 
@@ -72,7 +86,8 @@ module.exports = function(app, passport) {
                 googleCalendar.deleteCalendar(res.data);
                 database.fetchAllRooms(function(err, result) {
                     res1.render('pages/layout', {
-                        'rooms': result.data
+                        'rooms': result.data,
+                        'user': req.user
                     });
                 });
             });

@@ -14,7 +14,7 @@ $(document).ready(function() {
 
 
 
-    
+
     var authenticate = function() {
         var username = document.getElementById("login-name").value;
         var password = document.getElementById("login-pass").value;
@@ -141,10 +141,38 @@ $(document).ready(function() {
     });
 
 
-    $("#toggle").click(function() {
+    $(document).on('click', '#bookRoom', function(event) {
+        var data = {};
+        data.duration = $("#job :selected").text();
+        data.startTime = $("#startTime").val();
+        data.date = $("#datepicker").val();
+        data.description = $("#description").val();
+        data.email = $(this).attr("email") + "";
+        data.calendarId = $("iframe").attr("id");
+        console.log(data);
+        $.ajax({
+            url: "/bookRoom",
+            type: "POST",
+            data: data,
+            contentType: "application/x-www-form-urlencoded",
+            success: function(data, textStatus, jqXHR) {
+                console.log("Room succesfully booked");
+                // window.location.reload();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            }
+        });
+
+    });
+
+    $(document).on('click', '#toggle', function(event) {
         console.log("toggle");
         $("#scheduleForm").toggle("slow");
         $("#datepicker").datepicker();
+        $("#startTime").timepicker({
+            'scrollDefault': 'now'
+        });
     });
 
 
