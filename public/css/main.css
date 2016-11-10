@@ -1,5 +1,3 @@
-
-
 .form-style-5{
     display: none;
     max-width: 500px;
@@ -193,13 +191,33 @@ html, body {
     padding-left: 15px;
 }
 
-.input-group, .deviceDetail {
-    display: none;
-}
-
 .switchContainer {
     max-height: 25px;
 }
+
+#span1 {
+    font-weight: 300;
+    color: white;
+}
+
+#span2 {
+    font-weight: 700;
+}
+
+.btn-custom {
+    background-color: transparent !important;
+    border-radius: 0px !important;
+    border: solid 1px white !important;
+}
+
+#addDevice, #cancelAdd, #deleteDevice, #cancelDelete {
+    width: 50%;
+    border-radius: 0;
+}
+
+
+
+
 
 
 

@@ -23,7 +23,6 @@ html, body {
 	font-size: 20px;
 	padding-left: 10px;
 	border-radius: 10px;
-	border: solid 2px white;
 }
 
 .btn-primary {
@@ -43,4 +42,56 @@ html, body {
 
 .login-title {
 	color: white;
+}
+
+.form-input {
+	background-color: transparent !important;
+	border: none !important;
+	border-radius: 0px !important;
+	border-bottom: solid 1px white !important;
+	color: white !important;
+	width: 100%;
+}
+
+.form-group {
+	border: none !important;
+}
+
+#span1 {
+    font-weight: 300;
+    color: white;
+}
+
+#span2 {
+    font-weight: 700;
+    color: white;
+}
+
+.btn-custom {
+    background-color: #93ddeb !important;
+    border-radius: 0px !important;
+    border: none !important;
+}
+
+.login-container {
+	width: 350px;
+}
+
+h2 {
+	text-align: center;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    white;
 }

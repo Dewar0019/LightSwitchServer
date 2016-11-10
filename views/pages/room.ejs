@@ -1,7 +1,7 @@
 <h1 align="center"><%= room.displayName %></h1>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card">
                 <div class="header">
                     <h4 class="title">Devices</h4>
@@ -24,15 +24,15 @@
                         }%>
                     </ul>
                     <div id="addDeviceInput" class="input-group">
-                        <span class="input-group-addon" style="border: none">Add New Device</span>
+                        <span class="input-group-addon" style="border: none; width: 170px;">Add New Device</span>
                         <input  id="macInfo" type="text" class="form-control" placeholder="MAC Address">
                         <button id="addDevice" current-room-id="<%-room._id%>" type="button" class="btn btn-info">Add</button>
                         <button type="button" id="cancelAdd" class="btn btn-danger">Cancel</button>
                     </div>
-                    <div id="deleteDevice" class="input-group">
-                        <span class="input-group-addon" style="border: none">Remove a Device</span>
+                    <div id="deleteDeviceInput" class="input-group">
+                        <span class="input-group-addon" style="border: none; width: 170px;">Remove a Device</span>
                         <input  id="remove" type="text" class="form-control" placeholder="MAC Address">
-                        <button id="deleteDevice" type="button" class="btn btn-info">Add</button>
+                        <button id="deleteDevice" type="button" class="btn btn-info ">Add</button>
                         <button type="button" id="cancelDelete" class="btn btn-danger">Cancel</button>
                     </div>
                     <div id="container" class="addButtonContainer">
